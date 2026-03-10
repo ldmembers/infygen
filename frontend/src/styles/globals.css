@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Root tokens ──────────────────────────────────────────────── */
+:root {
+  --arc:     #4af4c8;
+  --ember:   #f4804a;
+  --pulse:   #6b8cff;
+  --void:    #07080a;
+  --surface: #0d0f12;
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--void);
+  color: #c5ccd8;
+  font-family: 'Instrument Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: #1e2229; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--arc); opacity: 0.4; }
+
+/* ── Selection ─────────────────────────────────────────────────── */
+::selection { background: rgba(74,244,200,0.2); color: #eef1f5; }
+
+/* ── Typing animation ─────────────────────────────────────────── */
+.typing-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--arc);
+  display: inline-block;
+  animation: dotBlink 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Noise grain overlay ──────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+}
+
+/* ── Glow classes ─────────────────────────────────────────────── */
+.glow-arc   { text-shadow: 0 0 20px rgba(74,244,200,0.5); }
+.glow-pulse { text-shadow: 0 0 20px rgba(107,140,255,0.5); }
+.border-glow { box-shadow: 0 0 0 1px rgba(74,244,200,0.2), 0 0 20px rgba(74,244,200,0.05); }
+.card { @apply bg-panel border border-border rounded-xl; }
+.btn-arc {
+  @apply px-4 py-2 rounded-lg font-body font-medium text-sm transition-all duration-200;
+  background: rgba(74,244,200,0.1);
+  color: #4af4c8;
+  border: 1px solid rgba(74,244,200,0.25);
+}
+.btn-arc:hover:not(:disabled) {
+  background: rgba(74,244,200,0.18);
+  border-color: rgba(74,244,200,0.5);
+  box-shadow: 0 0 16px rgba(74,244,200,0.15);
+}
+.btn-arc:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-ghost {
+  @apply px-4 py-2 rounded-lg font-body font-medium text-sm text-ghost transition-all duration-200;
+  border: 1px solid #1e2229;
+}
+.btn-ghost:hover { border-color: #2a2f3a; color: #c5ccd8; background: rgba(255,255,255,0.03); }
+
+/* ── Input ────────────────────────────────────────────────────── */
+.input-field {
+  @apply w-full bg-surface border border-border rounded-lg px-4 py-2.5 text-sm text-pale placeholder-ghost outline-none font-body;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-field:focus {
+  border-color: rgba(74,244,200,0.4);
+  box-shadow: 0 0 0 3px rgba(74,244,200,0.06);
+}
+
+/* ── Source badge ─────────────────────────────────────────────── */
+.source-tag {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-mono;
+}
+
+/* ── Confidence bar fill ─────────────────────────────────────── */
+.conf-fill { transition: width 0.8s cubic-bezier(0.16,1,0.3,1); }

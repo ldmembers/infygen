@@ -1,0 +1,35 @@
+# ── FastAPI & server ─────────────────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9        # required for file uploads in FastAPI
+
+# ── Config & environment ─────────────────────────────────────────────────────
+python-dotenv>=1.0.1
+
+# ── LLM (OpenAI-compatible client) ───────────────────────────────────────────
+openai>=1.30.0
+
+# ── Embeddings ───────────────────────────────────────────────────────────────
+requests>=2.31.0               # calls Ollama HTTP API
+
+# ── Vector database ──────────────────────────────────────────────────────────
+faiss-cpu>=1.8.0
+numpy>=1.26.0
+
+# ── Document parsing ─────────────────────────────────────────────────────────
+pypdf>=4.2.0                   # PDF text extraction
+pandas>=2.2.0                  # optional; csv module used directly
+
+# ── Database ─────────────────────────────────────────────────────────────────
+sqlalchemy>=2.0.0
+
+# ── Firebase authentication ───────────────────────────────────────────────────
+firebase-admin>=6.5.0
+
+# ── Gmail integration ─────────────────────────────────────────────────────────
+google-auth>=2.29.0
+google-auth-oauthlib>=1.2.0
+google-api-python-client>=2.130.0
+
+# ── Validation ───────────────────────────────────────────────────────────────
+pydantic>=2.7.0
